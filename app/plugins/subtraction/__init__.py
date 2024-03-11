@@ -1,19 +1,10 @@
-from abc import ABC, abstractmethod
+from app.commands import Command
 
-class Command(ABC):
-    @abstractmethod
-    def execute(self):
-        pass
-
-class CommandHandler:
-    def __init__(self):
-        self.commands = {}
-
-    def register_command(self, command_name: str, command: Command):
-        self.commands[command_name] = command
-
-    def execute_command(self, command_name: str, *args):
-        if command_name in self.commands:
-            self.commands[command_name].execute(*args)
+class SubtractionCommand(Command):
+    def execute(self, args):
+        if args:
+            a = float(args[0])
+            b = float(args[1])
+            print (f"Subtraction result : { a - b }")
         else:
-            print(f"No such command: {command_name}")
+            print ("nothing to subtract")
